@@ -1,3 +1,3 @@
 # Calculadora API (GQSO IFAL)
 
-TODO(Arthur-Rib): preencher descrição das funcionalidades do projeto
+Esse repositório implementa uma versão da calculadora API visando a linguagem de programação Go.
