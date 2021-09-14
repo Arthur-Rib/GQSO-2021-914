@@ -9,13 +9,11 @@ import (
 
 func main() {
 	app := fiber.New()
-
 	app.Get("/", func(c *fiber.Ctx) error {
 		return c.SendString("Calculadora API do Britinho")
 	})
 	fmt.Println("teste")
 	app.Get("/soma/:op1/:op2", soma)
-
 	app.Listen(":3000")
 }
 
@@ -30,8 +28,6 @@ func soma(c *fiber.Ctx) error {
 	if err != nil {
 		return c.Status(http.StatusBadRequest).SendString(fmt.Sprintf("Parâmetro inválido:\":%s\"", op2Str))
 	}
-
 	result := op1 + op2
-
 	return c.SendString(fmt.Sprintf("%.2f", result))
 }
