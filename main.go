@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -21,14 +20,9 @@ func main() {
 func somaHandler(c *fiber.Ctx) error {
 	op1Str := c.Params("op1")
 	op2Str := c.Params("op2")
-	op1, err := strconv.ParseFloat(c.Params("op1"), 64)
+	result, err := soma(op1Str, op2Str)
 	if err != nil {
-		return c.Status(http.StatusBadRequest).SendString(fmt.Sprintf("Parâmetro inválido:\":%s\"", op1Str))
+		c.Status(http.StatusBadRequest).SendString(fmt.Sprintf("Parâmetro inválido:\":%q\"", err))
 	}
-	op2, err := strconv.ParseFloat(c.Params("op2"), 64)
-	if err != nil {
-		return c.Status(http.StatusBadRequest).SendString(fmt.Sprintf("Parâmetro inválido:\":%s\"", op2Str))
-	}
-	result := soma(op1, op2)
 	return c.SendString(fmt.Sprintf("%.2f", result))
 }
